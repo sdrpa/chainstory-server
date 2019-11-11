@@ -1,0 +1,6 @@
+artisan/*.png
+graphics/*.png
+public/
+
+*.paw
+/main
