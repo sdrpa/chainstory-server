@@ -44,6 +44,11 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 
 func add(w http.ResponseWriter, r *http.Request) {
+	const maxFileSize = 1 * 1024
+	if r.ContentLength > maxFileSize {
+		http.Error(w, "Request too large", http.StatusExpectationFailed)
+		return
+	}
 	if r.Method == "POST" {
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
